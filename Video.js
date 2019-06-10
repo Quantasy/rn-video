@@ -204,14 +204,16 @@ export default class Video extends Component {
     const isAsset = !!(uri && uri.match(/^(assets-library|file|content|ms-appx|ms-appdata):/));
 
     let nativeResizeMode;
+    const RCTVideoInstance = this.getViewManagerConfig('RCTVideo');
+
     if (resizeMode === VideoResizeMode.stretch) {
-      nativeResizeMode = NativeModules.UIManager.RCTVideo.Constants.ScaleToFill;
+      nativeResizeMode = NativeModules.RCTVideoInstance.Constants.ScaleToFill;
     } else if (resizeMode === VideoResizeMode.contain) {
-      nativeResizeMode = NativeModules.UIManager.RCTVideo.Constants.ScaleAspectFit;
+      nativeResizeMode = NativeModules.RCTVideoInstance.Constants.ScaleAspectFit;
     } else if (resizeMode === VideoResizeMode.cover) {
-      nativeResizeMode = NativeModules.UIManager.RCTVideo.Constants.ScaleAspectFill;
+      nativeResizeMode = NativeModules.RCTVideoInstance.Constants.ScaleAspectFill;
     } else {
-      nativeResizeMode = NativeModules.UIManager.RCTVideo.Constants.ScaleNone;
+      nativeResizeMode = NativeModules.RCTVideoInstance.Constants.ScaleNone;
     }
 
     const nativeProps = Object.assign({}, this.props);
